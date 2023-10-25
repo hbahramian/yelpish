@@ -45,7 +45,7 @@ class RestaurantsAdapter(val context: Context) :
 //            Glide.with(context).load(restaurant.imageUrl).into(binding.imageView)
             Glide.with(context).load(restaurant.imageUrl)
                 .apply(
-                    RequestOptions().transforms(
+                    RequestOptions().transform(
                         CenterCrop(), RoundedCorners(20)
                     )
                 )
