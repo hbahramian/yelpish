@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import edu.iu.habahram.yelpish.databinding.RestaurantItemBinding
 import edu.iu.habahram.yelpish.model.YelpRestaurant
 
@@ -39,7 +42,14 @@ class RestaurantsAdapter(val context: Context) :
             binding.tvCategory.text = restaurant.categories[0].title
             binding.tvDistance.text = restaurant.displayDistance()
             binding.tvPrice.text = restaurant.price
-            Glide.with(context).load(restaurant.imageUrl).into(binding.imageView)
+//            Glide.with(context).load(restaurant.imageUrl).into(binding.imageView)
+            Glide.with(context).load(restaurant.imageUrl)
+                .apply(
+                    RequestOptions().transforms(
+                        CenterCrop(), RoundedCorners(20)
+                    )
+                )
+                .into(binding.imageView)
 
 
         }
